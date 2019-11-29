@@ -41,8 +41,17 @@ namespace ClienteMercadoUPBC
 
         private void lsCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
+            /* var combo = (Picker)sender;
+            var item = combo.SelectedItem; */
 
-            string llave;
+
+            var indice = lsCategoria.SelectedIndex + 1;
+
+
+          
+           
+            
+
         }
 
         private void Cantidad_ValueChanged(object sender, ValueChangedEventArgs e)
@@ -59,5 +68,6 @@ namespace ClienteMercadoUPBC
         {
 
         }
+
     }
 }
