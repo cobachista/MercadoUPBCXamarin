@@ -10,9 +10,11 @@
         <Label Text="Pedido" HorizontalOptions="Center"></Label>
         <Picker x:Name="lsCategoria"
         Title="Seleccionar Categoria" 
-        ItemsSource="{Binding Nombre}"
+        ItemsSource="{Binding Categorias}"
         ItemDisplayBinding="{Binding Nombre}" 
-        SelectedIndexChanged="lsCategoria_SelectedIndexChanged"/>
+        SelectedIndexChanged="OnPickerSelectedIndexChanged"
+                
+        />
 
 
 
@@ -26,7 +28,6 @@
         <Button x:Name="Agregar" Text="Agregar" Clicked="Agregar_Clicked"></Button>
         <Button x:Name="Borrar"  Text="Borrar" Clicked="Borrar_Clicked"  ></Button>
 
-            <Label x:Name="MiValor" Text="Valor" />
 
     </StackLayout>
 

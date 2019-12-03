@@ -23,7 +23,9 @@ namespace ClienteMercadoUPBC
         public MainPage()
         {
             InitializeComponent();
+           
             DisplayCantidad.Text = "0";
+            
         }
 
         
@@ -39,22 +41,9 @@ namespace ClienteMercadoUPBC
 
         }
 
-        private void lsCategoria_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            /* var combo = (Picker)sender;
-            var item = combo.SelectedItem; */
 
-
-            var indice = lsCategoria.SelectedIndex + 1;
-
-
-          
-           
-            
-
-        }
-
-        private void Cantidad_ValueChanged(object sender, ValueChangedEventArgs e)
+      
+      private void Cantidad_ValueChanged(object sender, ValueChangedEventArgs e)
         {
             DisplayCantidad.Text = Cantidad.Value.ToString();
         }
@@ -69,5 +58,14 @@ namespace ClienteMercadoUPBC
 
         }
 
+        private void OnPickerSelectedIndexChanged(object sender , EventArgs e)
+        {
+            Picker picker = sender as Picker;
+            var selectedItem =(Categoria)picker.SelectedItem;
+            var texto = selectedItem.Clave;
+            
+
+            
+        }
     }
 }
