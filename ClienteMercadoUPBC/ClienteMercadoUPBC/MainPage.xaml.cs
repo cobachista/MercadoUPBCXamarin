@@ -4,10 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace ClienteMercadoUPBC
@@ -20,15 +17,16 @@ namespace ClienteMercadoUPBC
         private const string url = "https://upbcmercado2019.000webhostapp.com/Categoriaweb.php";
         private HttpClient Client = new HttpClient();
         private ObservableCollection<Categoria> Categorias;
+        private ObservableCollection<Producto> Productos;
         public MainPage()
         {
             InitializeComponent();
-           
+
             DisplayCantidad.Text = "0";
-            
+
         }
 
-        
+
 
 
         protected override async void OnAppearing()
@@ -42,30 +40,40 @@ namespace ClienteMercadoUPBC
         }
 
 
-      
-      private void Cantidad_ValueChanged(object sender, ValueChangedEventArgs e)
+
+        private void Cantidad_ValueChanged(object sender, ValueChangedEventArgs e)
         {
             DisplayCantidad.Text = Cantidad.Value.ToString();
         }
 
-        private void Agregar_Clicked(object sender, EventArgs e)
+
+        private async void OnPickerSelectedIndexChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void Borrar_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void OnPickerSelectedIndexChanged(object sender , EventArgs e)
-        {
+            HttpClient Client1 = new HttpClient();
             Picker picker = sender as Picker;
-            var selectedItem =(Categoria)picker.SelectedItem;
-            var texto = selectedItem.Clave;
-            
+            var selectedItem = (Categoria)picker.SelectedItem;
+            string texto = selectedItem.Clave.ToString();
+            string url1 = "https://upbcmercado2019.000webhostapp.com/CategoriaClave.php?id="+texto;
+            var content = await Client.GetStringAsync(url1);
+            var productosJson = JsonConvert.DeserializeObject<List<Producto>>(content);
+            Productos = new ObservableCollection<Producto>(productosJson);
+            if (Productos == null)
+            {
+                await DisplayAlert("Mensaje","No Valores Seleccionar","Ok");
+            }
+            else
+            {
+                lsProducto.ItemsSource = Productos;
+            }
+            base.OnAppearing();
 
-            
+           
+           
+
+
+
         }
+          
     }
 }
+    

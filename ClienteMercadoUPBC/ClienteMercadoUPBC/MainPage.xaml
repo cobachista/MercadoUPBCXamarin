@@ -19,14 +19,15 @@
 
 
         <Picker x:Name="lsProducto"
-                Title="Seleccionar Producto" />
+                Title="Seleccionar Producto" 
+                ItemsSource="{Binding Productos}"
+             ItemDisplayBinding="{Binding Nombre}" />
 
         <Label x:Name="DisplayCantidad" />
         <Stepper x:Name="Cantidad" Minimum="1" Maximum="10" Increment="1" ValueChanged="Cantidad_ValueChanged" />
 
 
-        <Button x:Name="Agregar" Text="Agregar" Clicked="Agregar_Clicked"></Button>
-        <Button x:Name="Borrar"  Text="Borrar" Clicked="Borrar_Clicked"  ></Button>
+     
 
 
     </StackLayout>
