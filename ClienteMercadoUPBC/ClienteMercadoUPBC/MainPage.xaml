@@ -27,7 +27,11 @@
         <Stepper x:Name="Cantidad" Minimum="1" Maximum="10" Increment="1" ValueChanged="Cantidad_ValueChanged" />
 
 
-     
+<Button Text="Registrar" />
+
+<Button Text="Borrar" />
+
+
 
 
     </StackLayout>

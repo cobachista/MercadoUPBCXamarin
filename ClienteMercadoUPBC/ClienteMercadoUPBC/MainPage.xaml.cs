@@ -18,6 +18,7 @@ namespace ClienteMercadoUPBC
         private HttpClient Client = new HttpClient();
         private ObservableCollection<Categoria> Categorias;
         private ObservableCollection<Producto> Productos;
+        
         public MainPage()
         {
             InitializeComponent();
@@ -56,13 +57,16 @@ namespace ClienteMercadoUPBC
             string url1 = "https://upbcmercado2019.000webhostapp.com/CategoriaClave.php?id="+texto;
             var content = await Client.GetStringAsync(url1);
             var productosJson = JsonConvert.DeserializeObject<List<Producto>>(content);
-            Productos = new ObservableCollection<Producto>(productosJson);
-            if (Productos == null)
-            {
+            if (productosJson == null) {
+              
+
+                lsProducto.ItemsSource = new ObservableCollection<Producto>();
                 await DisplayAlert("Mensaje","No Valores Seleccionar","Ok");
             }
             else
             {
+                lsProducto.ItemsSource = new ObservableCollection<Producto>();
+                Productos = new ObservableCollection<Producto>(productosJson);
                 lsProducto.ItemsSource = Productos;
             }
             base.OnAppearing();
